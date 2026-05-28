@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оқулықтардың екінші өмірі + AI</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { text-align: center; color: #333; }
+        .form-box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .form-box input, .form-box textarea { width: 98%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; }
+        .btn { background-color: #28a745; color: white; padding: 12px; border: none; border-radius: 4px; width: 100%; cursor: pointer; font-size: 16px; font-weight: bold; }
+        .btn:hover { background-color: #218838; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid #007bff; margin-bottom: 10px; }
+        .price { font-weight: bold; color: #dc3545; font-size: 18px; margin: 5px 0; }
+        .ai-badge { display: inline-block; background-color: #e2f0d9; color: #385723; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-bottom: 10px; border: 1px solid #b4c6e7; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Оқулықтардың екінші өмірі <span style="font-size: 20px; color: #007bff;">(Python Flask + SQLite)</span></h1>
+        
+        <div class="form-box">
+            <h3>Жаңа хабарландыру қосу</h3>
+            <form action="/add_book" method="POST">
+                <input type="text" name="title" placeholder="Кітаптың аты (мысалы: C++ бағдарламалау немесе Абай жолы)" required>
+                <input type="text" name="price" placeholder="Бағасы (мысалы: 2000 тг немесе Тегін)" required>
+                <input type="text" name="contact" placeholder="Байланыс телефоны немесе Telegram" required>
+                <textarea name="desc" placeholder="Кітап туралы қосымша сипаттама..." rows="2"></textarea>
+                <button type="submit" class="btn">Жариялау (Базаға сақтау)</button>
+            </form>
+        </div>
+
+        <h2>Сатылымдағы кітаптар</h2>
+        <div class="grid">
+            {% for book in books %}
+            <div class="card">
+                <div class="ai-badge">🤖 AI Санаты: {{ book.category }}</div>
+                <h3>{{ book.title }}</h3>
+                <p class="price">{{ book.price }}</p>
+                <p>{{ book.desc }}</p>
+                <p>👤 <b>Байланыс:</b> {{ book.contact }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
